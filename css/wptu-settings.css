@@ -1,0 +1,63 @@
+.ui-tabs-nav {
+	border-bottom: 1px solid #ccc;
+	height: 27px;
+	margin: 20px 0;
+	padding: 0;
+}
+
+.ui-tabs-nav li {
+	display: block;
+	float: left;
+}
+
+.ui-tabs-nav li a {
+	padding: 4px 20px 6px;
+	font-weight: bold;
+}
+
+.ui-tabs-nav li a {
+	color: #C1C1C1;
+	text-shadow: rgba(255, 255, 255, 1) 0 1px 0;
+	display: inline-block;
+	padding: 4px 14px 6px;
+	text-decoration: none;
+}
+
+.ui-tabs-nav li.ui-tabs-selected a,
+.ui-tabs-nav li.ui-state-active a {
+	border-width: 1px;
+	color: #464646;
+	border-bottom:none;
+	padding-bottom: 7px;
+}
+
+.ui-tabs-nav li.ui-tabs-selected,
+.ui-tabs-nav li.ui-state-active {
+	border-bottom:none;
+}
+
+.ui-tabs-panel {
+	clear: both;
+}
+
+.ui-tabs-panel h3 {
+	font: italic normal normal 24px/29px Georgia,"Times New Roman","Bitstream Charter",Times,serif;
+	margin: 0;
+	padding: 0 0 5px;
+	line-height: 35px;
+	text-shadow: 0 1px 0 #fff;
+}
+
+.ui-tabs-panel h4 {
+	font-size: 15px;
+	font-weight: bold;
+	margin: 1em 0;
+}
+
+.wrap h3, .wrap table {
+	display: none;
+}
+
+.ui-widget-content {
+	border:none !important;
+}

@@ -1,0 +1,195 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http</strong>://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<title>A guide to the WordPress Theme Utilites</title>
+<link rel="stylesheet" href="readme.css" type="text/css" media="screen" />
+</head>
+<body>
+<h1>A guide to WordPress Theme Utilites</h1>
+<p>Version <em>1.0</em></p>
+<p>
+   <em>WordPress Theme Utilites</em> was written to take care of  some of the numerous required plugins and hacks that tend to build up in template function files.
+</p>
+<p> This plugin was written by <a href="http://simondouglas.com">Simon Douglas</a> 2012 &mdash; 2013</p>
+<h3 class="clear">Public</h3>
+<ul>
+  <li class="space"><strong>wptu_get_attachment</strong>: gets everything you want for an image. <br />
+    For example:
+    <pre><code>$image_properties = wptu_get_attachment("post_id={$post_id}&attachment_id={$image_id}&size=thumbnail&alt={$title}&width={$width}&height={$height}");</code></pre>
+    <br />
+    Where <code>$post_id = $post->ID</code> and <code>$attachment_id is the id of the image</code><br />
+    The <code>$size</code> parameter will build up the <code>image_tag</code> value, you can just echo that out to your template. <br />
+    You will get a deep array of image properties thus:
+    <pre>
+    <code>
+    [post_id] => 262
+    [attachment_id] => 263
+    [link] => http://www.vancouverfoundationawards.ca/wp-content/uploads/2011/01/13/allison-b/SmallGrantProject.jpg
+    [source] => http://www.vancouverfoundationawards.ca/wp-content/uploads/2011/01/13/allison-b/SmallGrantProject-138x108.jpg
+    [width] => 138
+    [height] => 108
+    [image_size] => thumbnail
+    [meta_data] => Array
+        (
+            [width] => 4224
+            [height] => 3168
+            [hwstring_small] => height='96' width='128'
+            [file] => 2011/01/13/allison-b/SmallGrantProject.jpg
+            [sizes] => Array
+                (
+                    [thumbnail] => Array
+                        (
+                            [file] => SmallGrantProject-138x108.jpg
+                            [width] => 138
+                            [height] => 108
+                        )
+
+                    [medium] => Array
+                        (
+                            [file] => SmallGrantProject-300x225.jpg
+                            [width] => 300
+                            [height] => 225
+                        )
+
+                    [large] => Array
+                        (
+                            [file] => SmallGrantProject-400x300.jpg
+                            [width] => 400
+                            [height] => 300
+                        )
+
+                    [news-image] => Array
+                        (
+                            [file] => SmallGrantProject-185x100.jpg
+                            [width] => 185
+                            [height] => 100
+                        )
+
+                )
+
+            [image_meta] => Array
+                (
+                    [aperture] => 2.9
+                    [credit] => 
+                    [camera] => COOLPIX P6000
+                    [caption] => 
+                    [created_timestamp] => 
+                    [copyright] => 
+                    [focal_length] => 6
+                    [iso] => 64
+                    [shutter_speed] => 0.00215238
+                    [title] => 
+                )
+
+        )
+
+    [mime] => image/jpeg
+    [title] => SmallGrantProject
+    [caption] => 
+    [alt] => A green transformation
+    [description] => 
+    [date] => 2011-01-13 00:14:05
+    [image_tag] => <img src="http://www.vancouverfoundationawards.ca/wp-content/uploads/2011/01/13/allison-b/SmallGrantProject-138x108.jpg" width="138" height="108" alt="A green transformation"/>
+    [filename] => SmallGrantProject-138x108.jpg
+    [class] => 
+    </code>
+    </pre>
+    Therefore to get the camera used for example we could go <code>$image_properties['meta_data']['image_meta']['camera']</code> which would retrieve COOLPIX P6000. </li>
+  <li class="space"><strong>wptu_add_post_image</strong>: This attaches an image via a hook to the post. It is coupled with <em>wptu_get_attachment</em> as a means to add post images. Parameters must be added through the filter <em>wptu_add_post_image_args</em></li>
+  <li class="space"><strong>wptu_add_post_image_args: </strong>Filter used to add parameters to <em>wptu_add_post_image </em>function. </li>
+  <li><del><strong>wptu_get_cft_id</strong>: retrieves a value between known delimeters. Useful with the CFT plugin.</del></li>
+  <li><del><strong>wptu_get_cft_repeating_data</strong>: Used with the CFT in side of repeating field sets to get repeating data. Note: Repeating fields in the CFT plugin are useless, so use the <a href="http://magicfields.org/" target="_blank">Magic Fields Plugin</a> instead.</del></li>
+  <li><strong>wptu_get_the_browser</strong>: gets useful properties of the user browser. This is called automatically and added to the <code>body_class</code> hook. You probably shouldn't have to call it again as it can add considerable time to file execution.</li>
+  <li><strong>wptu_is_descedant</strong>: determines if a page is a child(n) of another.</li>
+  <li>$<strong>wptu_browser_classes</strong>: global registed that contains browser specific classes.</li>
+</ul>
+<h2>WPTU Admin Panel</h2>
+<p><em>Added in version 1.0</em><br />
+<strong>WordPress Menu &rarr; Settings &rarr; WordPress Theme Utilites</strong></p>
+
+<p>This is a customisable panel that can be used to store data in the Options Table for your website.
+   <br />Data is stored as a serialised array so it can be access easily.<br /> Using <code>wptu_plugin_option('field_name')</code> will retrieve the value of the field for you.
+</p>
+
+<h5>General Settings</h5>
+<ul>
+   <li>jQuery Version</li>
+   <li>Use Modernizer or not</li>
+   <li>Add body classes to the <code>body_class()</code> function</li>
+   <li>Add extra TinyMCE styles. This still works without TinyMCE Advanced</li>
+   <li>Google Analytics code for the header</li>
+</ul>
+
+<h5>Social Media</h5>
+<p>Twitter, Facebook, YouTube, LinkedIn for your client site</p>
+
+<h5>Adding Extra Settings</h5>
+<p>Add <code>wptu-core-options.php</code> to your theme, then use the provided hooks to add more fields.</p>
+
+<p>An example from <a href="http://woodworks.org">WoodWorks</a></p>
+<pre>
+<code>/*Adds A heading to the WordPress Theme Utilites Options Panel - take a look at wptu-settings.php for info...*/
+function wptu_core_section_options(){
+    $args =  array( 'woodworks' => 'Woodworks Custom Post Types' );
+    return $args;
+}
+/* Adds a field to the section woodworks */
+function wptu_core_section_settings(){
+
+   $args = array('ww_staff_slug' => array( 
+                                    'title'=>'Staff Archive Slug',
+                                    'desc'=>'This is for breadcrumb functionality. Define the with_front property of the slug',
+                                    'std'=>'',
+                                    'type'=>'text', // text,textarea,radio,select
+                                    'section'=>'woodworks' )
+               );
+   return $args;
+}</code>
+</pre>
+<h2>Shortcodes</h2>
+<ul>
+  <li>[bloginfo] Returns the shortcodes for bloginfo e.g. [bloginfo key="name"] returns the sitename. <br />
+    The WP <a href="http://codex.wordpress.org/Function_Reference/bloginfo" target="_blank">Codex has values</a>.</li>
+  <li>[admin_email] Returns the admin email in the format <a href="admin_email">bloginfo('name')</a>. No parameters.</li>
+  <li>[email] e.g.  [email mailbox="simon" url="wptu.ca" subject="Enquiry From Site" display_text="display text!"]. <br />
+    This outputs literally:
+    <pre><code>&lt;script type="text/javascript"&gt;eE=('simon' + '%40' + 'wptu.ca?subject=Enquiry%20From%20Site');eD=('&lt;span class="display-text"&gt;display text!&lt;/span&gt;');document.write('&lt;a href="&#38;#109&#38;#97&#38;#105&#38;#108&#38;#116;&#38;#111;&#38;#58;' + eE + '"&gt;' + eD + '&lt;/a&gt;');&lt;/script&gt;
+</code></pre>
+  </li>
+  <li>[include]. Does a simple php include. [include file="path_to_file"]. Put your includes in your template directory.</li>
+  <li>[loop]. This is a useful way to drop in post data into a page.<br />
+    <pre><code>[loop category='slug_name_or_id' query='anything_you_want_eg_orderby' pagination='true']</code></pre>
+    <em>Improved in 1.0.13</em>. Now accepts parameters such as taxonomy ( <code>tax="tax_name"</code> ), <code>term="term_name"</code> and <code>loop</code> template.
+    <pre>
+    // example from woodworks.org
+    <code>[loop query="posts_per_page=-1&post_type=resources&orderby=date&order=ASC" tax="resource_type" terms="information-sheets" loop="excerpt-information"]</code>
+    // result:
+    // Get all posts from the resource post type order by date ascending that have 
+    // the term information-sheets ( like a tag )
+    // Output the data to template "loop-excerpt-information.php" which is responsible for formatting.
+    </pre>
+    <p>If wp_pagenavi is present, <code>pagination=true</code> will enable it.</p>
+    <p><em>Improvements in 1.1</em><br />
+    WP PageNavi has slightly changed so this plugin had to be updated. Compatible with WP PageNavi 2.83 <br />
+    Implementation is the same, but there could be bugs with <code>$paged</code>.
+    </p>
+
+  </li>
+</ul>
+<h2>Private</h2>
+<p>This stuff all turns up for free.</p>
+<ul>
+   <li>WPTU Developer Notes added to the dashboard so you can leave notes to you and other developers. Added ()</li>
+  <li>Added warning bar if you are viewing the site locally ( 0.9.8.2 )</li>
+  <li>Added <a href="http://www.modernizr.com/" target="_blank">Modinzer</a> support for html5 sites and detecting CSS3.</li>
+  <li>You can place your shortcodes in <strong>text widgets</strong> and they evalute.</li>
+  <li>Removing WordPress version and fluff in the <code>meta</code> header.</li>
+  <li>jQuery is added automatically from Google.</li>
+  <li>ID's are added to the Media browser, for your convenience. IDs are also added to all Admin tables.</li>
+  <li>ID's are added to the CMS Tree plugin if it is available ( usually is on most WPTU Sites )</li>
+  <li>Various Tinymce clean up filters which run to remove empty spaces and line breaks (the latter could be a problem depending on your setup.)</li>
+</ul>
+<p>2013 <a href="http://www.simondouglas.com" target="_blank">simondouglas.com</a>.</p>
+</body>
+</html>

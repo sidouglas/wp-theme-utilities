@@ -1,0 +1,40 @@
+/*
+* this is to remove so some of the clutter in the WordPress backend that
+* plugins tend to add
+*/
+
+/*donate crap from tree plugin people*/
+.bonny-plugins-inner-sidebar {
+display:none !important;
+}
+
+/*white label cms crap*/
+#wlcms-vum-promo  {
+display:none !important;
+}
+
+.settings_page_adminimize-adminimize #about {
+display:none !important;
+}
+
+/* All in One SEO
+* clever not to name their divs */
+.settings_page_all-in-one-seo-pack-aioseop-class .wrap  div:first-child {
+display:none !important;
+}
+
+.settings_page_all-in-one-seo-pack-aioseop-class .wrap div:nth-child(2) {
+display:none !important;
+}
+
+.settings_page_all-in-one-seo-pack-aioseop-class #mc-embedded-subscribe-form {
+display:none !important;
+}
+
+#adminmenu div.wp-menu-image {
+   overflow: hidden;
+}
+
+.settings_page_wptu-plugin-options .regular-text {
+	color:#000 !important;
+}
