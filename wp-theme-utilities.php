@@ -97,11 +97,8 @@ add_action('admin_init', '_wptu_add');
 
 /* DEVELOPER NOTES
 ----------------------------------------------------------------------------------*/
-/**
- * use hook, to integrate new widget
- */
-add_action('wp_dashboard_setup', 'wptu_developer_notes');
 
+add_action('wp_dashboard_setup', 'wptu_developer_notes');
 /**
  * add Dashboard Widget via function wp_add_dashboard_widget()
  */
