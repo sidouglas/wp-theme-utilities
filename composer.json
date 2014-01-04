@@ -1,0 +1,19 @@
+{
+  "name": "sidouglas/wp-theme-utilities",
+  "description": "WordPress Theme Utilites was written to take care of some of the numerous required plugins and hacks that tend to build up in template function files.",
+  "keywords": ["wordpress", "plugin", "sidouglas"],
+  "homepage": "https://github.com/sidouglas/wp-theme-utilities/",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Simon Douglas",
+      "email": "si@simondouglas.com",
+      "homepage": "http://simondouglas.com"
+    }
+  ],
+  "type": "wordpress-plugin",
+  "require": {
+    "php": ">=5.3.2",
+    "composer/installers": "v1.0.6"
+  }
+}
